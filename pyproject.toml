@@ -1,0 +1,41 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pydb"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+keywords = ["database", "db", "toy"]
+authors = [{ name = "Jonathan Lopez", email = "jonathanglopez@gmail.com" }]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = ["typer[all]", "rich"]
+dynamic = ["version", "description"]
+
+[project.urls]
+Home = "https://github.com/otherJL0/pydb"
+Documentation = "https://github.com/otherJL0/pydb#readme"
+Issues = "https://github.com/otherJL0/pydb/issues"
+Source = "https://github.com/otherJL0/pydb"
+
+[project.scripts]
+pydb = "pydb.main:app"
+
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov", "coverage"]
+dev = ["black", "isort", "mypy", "pylint", "pip-tools", "thx", "flit", "pex"]
+profile = ["memray", "scalene"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = ["pydb/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
